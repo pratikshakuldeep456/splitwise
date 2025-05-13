@@ -1,6 +1,6 @@
 package splitwise
 
 type Split struct {
-	UserID string
+	UserID int
 	Amount float64
 }

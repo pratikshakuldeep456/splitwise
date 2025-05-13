@@ -3,6 +3,15 @@ package splitwise
 type PercentageSplit struct {
 }
 
-func (p *PercentageSplit) SplitAmount(paidby *User, amount float64, participants []*User) {
+func (p *PercentageSplit) SplitAmount(paidby *User, amount float64, participants []*User, meta interface{}) []*Split {
+	cents, ok := meta.([]float64)
+	if !ok || len(cents) != len(participants) {
+		panic("Invalid meta data for exact split")
+	}
+	Splits := []*Split{}
+	for i, user := range participants {
+		Splits = append(Splits, &Split{UserID: user.ID, Amount: (cents[i] / 100.0) * amount})
+	}
+	return Splits
 
 }
