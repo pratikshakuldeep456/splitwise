@@ -24,11 +24,11 @@ func (s *ExpenseService) AddExpense(groupID int,
 		Splits:      splits,
 	}
 
-	for _, split := range splits {
-		if split.UserID != paidBy.ID {
-			paidBy.Balances[split.UserID] += split.Amount
-		}
-	}
+	// for _, split := range splits {
+	// 	if split.UserID != paidBy.ID {
+	// 		paidBy.Balances[split.UserID] += split.Amount
+	// 	}
+	// }
 
 	return expense
 }
